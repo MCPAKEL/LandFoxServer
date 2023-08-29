@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Status Server Minecraft</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-image: url('https://telegra.ph/file/2a46a0d16133c035e062e.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .glass-frame {
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid #e74c3c;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 300px;
+  }
+
+  h1 {
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+
+  p {
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+  }
+
+  .notification {
+    background-color: #3498db;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    margin-top: 15px;
+    font-size: 0.9em;
+  }
+
+  .discord-button {
+    margin-top: 15px;
+  }
+
+  .discord-button a {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #7289da;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.9em;
+  }
+
+  .button-container {
+    display: flex;
+    margin-top: 15px;
+  }
+
+  .button-container a {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #7289da;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.9em;
+    margin: 0 8px; /* Untuk memberi jarak antara tombol */
+  }
+
+  .whatsapp-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #25d366;
+    border-radius: 50%;
+    padding: 8px;
+  }
+
+  .whatsapp-button img {
+    width: 24px;
+    height: 24px;
+  }
+</style>
+</head>
+<body>
+<audio autoplay loop>
+  <source src="background-music.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+<div class="glass-frame">
+  <h1>Server Status</h1>
+  <p id="status-text">Checking server status...</p>
+  <div class="notification" id="notification">
+    Special server notification.
+  </div>
+  <div class="discord-button">
+    <a href="https://discord.gg/your-server-invite" target="_blank">Join Discord Server</a>
+  </div>
+</div>
+<div class="button-container">
+  <a href="server.html">SERVER</a>
+  <a href="premium.html">PREMIUN</a>
+  <a href="leaderboard.html">LEADERBOARD</a>
+</div>
+<div class="whatsapp-button">
+  <a href="https://wa.me/1234567890?text=Hello%20there!" target="_blank">
+    <img src="whatsapp-icon.png" alt="WhatsApp">
+  </a>
+</div>
+<script>
+  const statusText = document.getElementById('status-text');
+  const notification = document.getElementById('notification');
+
+  // Change this URL to your Minecraft server URL
+  const serverURL = 'https://your-server-url.com';
+
+  // Using AJAX to fetch server status
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', serverURL, true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        statusText.textContent = 'Server Online';
+        statusText.style.color = 'green';
+        notification.style.backgroundColor = '#27ae60';
+        notification.textContent = 'Server is running smoothly.';
+      } else {
+        statusText.textContent = 'Server Offline';
+        statusText.style.color = '#e74c3c';
+        notification.style.backgroundColor = '#e74c3c';
+        notification.textContent = 'Server is currently offline. Please try again later.';
+      }
+    }
+  };
+  xhr.send();
+</script>
+</body>
+</html>

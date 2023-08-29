@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('https://telegra.ph/file/2a46a0d16133c035e062e.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  .premium-list {
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+  }
+  .profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+  }
+  .profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  .premium-rank {
+    font-weight: bold;
+    color: #FFD700; /* Warna Emas untuk SUPREM */
+  }
+</style>
+<title>LIST PLAYER PREMIUM</title>
+</head>
+<body>
+<div class="premium-list">
+  <h1>LIST PLAYER PREMIUM</h1>
+  <div id="premiumPlayerList">
+    <!-- Data will be dynamically added here using JavaScript -->
+  </div>
+</div>
+<script>
+  const premiumPlayers = [
+    { name: "Player1", premiumAmount: "SUPREM", profileImage: "tes.jpg" },
+    { name: "Player2", premiumAmount: "LEGEND", profileImage: "tes.jpg" },
+    { name: "Player3", premiumAmount: "MVP++", profileImage: "tes.jpg" },
+    { name: "Player4", premiumAmount: "VIP+", profileImage: "tes.jpg" },
+    { name: "Player5", premiumAmount: "GG++", profileImage: "tes.jpg" }
+  ];
+
+  const premiumPlayerList = document.getElementById("premiumPlayerList");
+
+  premiumPlayers.forEach(player => {
+    const profileDiv = document.createElement("div");
+    profileDiv.className = "profile";
+    profileDiv.innerHTML = `
+      <img src="${player.profileImage}" alt="${player.name} Profile">
+      <div>
+        <h3>${player.name}</h3>
+        <p>RANK: <span class="premium-rank" style="color: ${getColor(player.premiumAmount)}">${player.premiumAmount}</span></p>
+      </div>
+    `;
+    premiumPlayerList.appendChild(profileDiv);
+  });
+
+  function getColor(rank) {
+    switch (rank) {
+      case "SUPREM":
+        return "#FFD700"; // Emas
+      case "LEGEND":
+        return "#FF6347"; // Merah
+      case "MVP++":
+        return "#00CED1"; // Biru Terang
+      case "VIP+":
+        return "#32CD32"; // Hijau Terang
+      case "GG++":
+        return "#9400D3"; // Ungu Gelap
+      default:
+        return "#000000"; // Hitam
+    }
+  }
+</script>
+</body>
+</html>
